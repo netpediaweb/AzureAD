@@ -1,2 +1,2 @@
-# AzureAD
-Azure_AD_Management
+This is Renaissance IT tool that integrate with HR systems
+Design by Virendra Singh

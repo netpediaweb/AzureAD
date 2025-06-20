@@ -1,0 +1,14 @@
+Flask
+
+Flask-Mail
+
+requests
+
+msal
+
+ldap3
+
+
+
+pycryptodome
+

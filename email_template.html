@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>New Account Created</title>
+
+  <style>
+
+    body {
+
+      font-family: 'Segoe UI', sans-serif;
+
+      background: #f4f6f8;
+
+      padding: 30px;
+
+      color: #333;
+
+    }
+
+    .container {
+
+      max-width: 600px;
+
+      background: #fff;
+
+      margin: auto;
+
+      padding: 30px;
+
+      border-radius: 8px;
+
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+    }
+
+    .header {
+
+      text-align: center;
+
+      border-bottom: 1px solid #ddd;
+
+      padding-bottom: 10px;
+
+      margin-bottom: 25px;
+
+    }
+
+    .header img {
+
+      max-width: 160px;
+
+      margin-bottom: 10px;
+
+    }
+
+    h2 {
+
+      color: #0d6efd;
+
+      font-size: 20px;
+
+    }
+
+    .info p {
+
+      font-size: 15px;
+
+      margin: 8px 0;
+
+      line-height: 1.6;
+
+    }
+
+    .label {
+
+      font-weight: bold;
+
+      color: #555;
+
+    }
+
+    .footer {
+
+      text-align: center;
+
+      margin-top: 30px;
+
+      font-size: 12px;
+
+      color: #999;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+
+      <img src="https://renrns.com/wp-content/uploads/2021/02/logo.png" alt="REN Logo">
+
+      <h2>Account Setup Information</h2>
+
+    </div>
+
+
+    <div class="info">
+
+      <p>Hey Dear <strong>{{ first_name }} {{ last_name }}</strong>,</p>
+
+
+      <p class="label">🖥️ AD/Computer Login:</p>
+
+      <p>• <span class="label">Username:</span> {{ username }}<br>
+
+         • <span class="label">Password:</span> {{ password }}</p>
+
+
+      <p class="label">📧 Azure / MS365 Login:</p>
+
+      <p>• <span class="label">Email:</span> {{ upn }}<br>
+
+         • <span class="label">Password:</span> {{ password }}</p>
+
+
+      {% if azure_enabled %}
+
+        <p class="label">🎫 License Types:</p>
+
+        <ul>
+
+          {% for license in license_names %}
+
+            <li>{{ license }}</li>
+
+          {% endfor %}
+
+        </ul>
+
+      {% else %}
+
+        <p><strong>⚠️ Azure/MS365 is not enabled for this user.</strong></p>
+
+      {% endif %}
+
+    </div>
+
+
+    <div class="footer">
+
+      Kindly change your password upon first login. <br>
+
+      Managed by RENRNS IT Automation Tool
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
+
