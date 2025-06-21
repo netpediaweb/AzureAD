@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Terminate User</title>
+
+    <style>
+
+        body { font-family: Arial; background: #f2f2f2; padding: 50px; }
+
+        form { background: white; padding: 20px; border-radius: 8px; max-width: 400px; margin: auto; }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h2 align="center">🔒 Terminate User</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% for category, message in messages %}
+
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+
+        {% endfor %}
+
+    {% endwith %}
+
+    <form method="POST">
+
+        <label>Username:</label>
+
+        <input type="text" name="username" required style="width:100%;padding:8px;">
+
+        <br><br>
+
+        <button type="submit">Terminate</button>
+
+    </form>
+
+</body>
+
+</html>
+

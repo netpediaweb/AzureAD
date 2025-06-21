@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AD & MS365 User Creator</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+  <style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      background: #f9f9f9;
+
+      padding: 20px;
+
+    }
+
+    h2 {
+
+      margin-bottom: 10px;
+
+      text-align: center;
+
+    }
+
+    form {
+
+      background: white;
+
+      padding: 20px;
+
+      border-radius: 8px;
+
+      max-width: 600px;
+
+      margin: auto;
+
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    }
+
+    label {
+
+      display: block;
+
+      margin-top: 15px;
+
+    }
+
+    input[type="text"], input[type="password"], select {
+
+      width: 100%;
+
+      padding: 8px;
+
+      margin-top: 5px;
+
+    }
+
+    .checkbox-group {
+
+      margin-top: 10px;
+
+    }
+
+    .checkbox-row {
+
+      margin-bottom: 5px;
+
+    }
+
+    .logo {
+
+      display: block;
+
+      margin: auto;
+
+      max-width: 200px;
+
+    }
+
+    .link-button {
+
+      display: block;
+
+      text-align: center;
+
+      margin: 30px auto 10px auto;
+
+    }
+
+    .link-button a {
+
+      background-color: #007bff;
+
+      color: white;
+
+      padding: 10px 20px;
+
+      text-decoration: none;
+
+      border-radius: 5px;
+
+      font-weight: bold;
+
+    }
+
+    .link-button a:hover {
+
+      background-color: #0056b3;
+
+    }
+
+    footer {
+
+      text-align: center;
+
+      margin-top: 40px;
+
+      font-size: 0.9em;
+
+      color: #777;
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <img src="https://renrns.com/wp-content/uploads/2021/02/logo.png" alt="Logo" class="logo">
+
+  <h2>New HR Tool (Integrated with IT)</h2>
+
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+      {% for category, message in messages %}
+
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+
+          {{ message|safe }}
+
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        </div>
+
+      {% endfor %}
+
+    {% endif %}
+
+  {% endwith %}
+
+
+  <form method="POST">
+
+    <label>First Name:</label>
+
+    <input type="text" name="first_name" required>
+
+
+    <label>Last Name:</label>
+
+    <input type="text" name="last_name" required>
+
+
+    <label>Username:</label>
+
+    <input type="text" name="username" required>
+
+
+    <label>Organizational Unit (OU):</label>
+
+    <select name="ad_ou" id="ad_ou" required>
+
+      {% for ou in ous %}
+
+        <option value="{{ ou.dn }}">{{ ou.label }}</option>
+
+      {% endfor %}
+
+    </select>
+
+
+    <label>AD Group (Searchable):</label>
+
+    <select name="ad_group" id="ad_group" style="width:100%">
+
+      <option></option>
+
+      {% for group in groups %}
+
+        <option value="{{ group }}">{{ group }}</option>
+
+      {% endfor %}
+
+    </select>
+
+
+    <label><input type="checkbox" id="azure_enabled" name="azure_enabled"> Enable Azure / MS365</label>
+
+
+    <div id="azure_fields" style="display: none;">
+
+      <label>Azure Licenses:</label>
+
+      <div class="checkbox-group">
+
+        {% for sku in azure_skus %}
+
+          <label class="checkbox-row">
+
+            <input type="checkbox" name="azure_skus" value="{{ sku.id }}">
+
+            {{ sku.name }} (Available: {{ sku.available }})
+
+          </label>
+
+        {% endfor %}
+
+      </div>
+
+      <label>Azure Location:</label>
+
+      <select name="azure_location">
+
+        <option value="Ottawa">Ottawa</option>
+
+        <option value="Dallas">Dallas</option>
+
+      </select>
+
+    </div>
+
+
+    <br><button type="submit">Create User</button>
+
+  </form>
+
+
+  <div class="link-button">
+
+    <a href="http://192.168.128.11:5001" target="_blank">🔁 Open EnableToggle App</a>
+
+  </div>
+
+
+  <footer>
+
+    Designed by Virendra Singh
+
+  </footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <script>
+
+    $('#ad_group').select2({
+
+      placeholder: 'Select or search AD group',
+
+      allowClear: true
+
+    });
+
+
+    document.getElementById('azure_enabled').addEventListener('change', function () {
+
+      document.getElementById('azure_fields').style.display = this.checked ? 'block' : 'none';
+
+    });
+
+  </script>
+
+</body>
+
+
+</html>
+
