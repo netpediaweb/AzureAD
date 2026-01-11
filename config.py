@@ -52,13 +52,13 @@ ALL_EMPLOYEES_GROUP_ID = 'xxxx@xxxx.xxm'
 GROUP_CHOICES = {
 
 
-    "Ottawa": OTTAWA_GROUP_ID,
+    "city1": GROUP_ID,
 
 
-    "Dallas": DALLAS_GROUP_ID,
+    "city": GROUP_ID,
 
 
-    "All Employees": ALL_EMPLOYEES_GROUP_ID
+    "All Employees": _GROUP_ID
 
 
 }
@@ -75,5 +75,6 @@ SMTP_USERNAME = "xxxx@xxxx.xxm"
 SMTP_PASSWORD = "xxxx@xxxx.xxm"
 
 SMTP_SENDER = "xxxx@xxxx.xxm"
+
 
 SMTP_RECIPIENTS = ["xxxx@xxxx.xxm", "xxxx@xxxx.xxm"]
